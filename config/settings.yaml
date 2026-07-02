@@ -1,0 +1,16 @@
+system:
+  name: "AETHER"
+  version: "2.0"
+  environment: "development"
+  log_level: "INFO"
+
+database:
+  url: "sqlite+aiosqlite:///./aether.db"
+
+engines:
+  goal_manager:
+    max_subtasks: 10
+  shared_memory:
+    ttl_seconds: 3600
+  workspace_manager:
+    base_path: "./workspace"

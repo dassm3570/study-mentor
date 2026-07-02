@@ -1,0 +1,3 @@
+Review the execution logs and outcomes. 
+Identify errors, inefficiencies, or deviations from the goal.
+Formulate clear corrective instructions.

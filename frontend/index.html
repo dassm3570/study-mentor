@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETHER 2.0 | AI Operating System Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <span class="logo-orb"></span>
+                <h1>AETHER <span class="version">2.0</span></h1>
+            </div>
+            <div class="system-status">
+                <span class="status-dot pulsing"></span>
+                <span id="status-text">SYSTEM ONLINE</span>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Central Control -->
+            <section class="card glass central-control">
+                <h2>Cognitive Core</h2>
+                <p class="subtitle">Interact directly with the Core Brain</p>
+                <div class="thought-display" id="thought-display">
+                    <div class="monologue">AETHER 2.0 is idling. Awaiting stimulation...</div>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="stimulus-input" placeholder="Inject stimulus or goal..." autocomplete="off">
+                    <button id="send-btn">Process</button>
+                </div>
+            </section>
+
+            <!-- Cognitive Engines Panel -->
+            <section class="card glass engines-panel">
+                <h2>Cognitive Engines</h2>
+                <div class="engines-grid">
+                    <div class="engine-card" id="engine-goal">
+                        <div class="engine-icon">🎯</div>
+                        <h3>Goal Manager</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-workspace">
+                        <div class="engine-icon">📁</div>
+                        <h3>Workspace</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-memory">
+                        <div class="engine-icon">🧠</div>
+                        <h3>Shared Memory</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-knowledge">
+                        <div class="engine-icon">📚</div>
+                        <h3>Knowledge</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-innovation">
+                        <div class="engine-icon">💡</div>
+                        <h3>Innovation</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-genesis">
+                        <div class="engine-icon">🧬</div>
+                        <h3>Genesis</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-reflection">
+                        <div class="engine-icon">🪞</div>
+                        <h3>Reflection</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                    <div class="engine-card" id="engine-evolution">
+                        <div class="engine-icon">⚡</div>
+                        <h3>Evolution</h3>
+                        <span class="engine-status active">Ready</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Innovation Engine Modal -->
+    <div id="innovation-modal" class="modal-overlay hidden">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <div class="modal-title-area">
+                    <span class="modal-icon">💡</span>
+                    <h2>Innovation Engine</h2>
+                </div>
+                <button id="close-innovation-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="subtitle">Enter your goal to generate tailored product concepts, feature ideas, and research vectors.</p>
+                
+                <div class="innovation-form">
+                    <div class="form-group">
+                        <label for="innovation-goal">Core Goal / Challenge</label>
+                        <input type="text" id="innovation-goal" placeholder="e.g., Build a sustainable food delivery service..." autocomplete="off">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="innovation-industry">Industry (Optional)</label>
+                            <input type="text" id="innovation-industry" placeholder="e.g., FoodTech, HealthTech" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="innovation-focus">Focus Area (Optional)</label>
+                            <input type="text" id="innovation-focus" placeholder="e.g., Sustainability, AI" autocomplete="off">
+                        </div>
+                    </div>
+                    <button id="generate-innovation-btn">Generate Innovation Package</button>
+                </div>
+
+                <!-- Loading State -->
+                <div id="innovation-loading" class="loading-container hidden">
+                    <div class="spinner"></div>
+                    <p>Synthesizing innovation vectors...</p>
+                </div>
+
+                <!-- Results Area -->
+                <div id="innovation-results" class="results-container hidden">
+                    <div class="results-meta">
+                        <span class="meta-badge" id="result-industry-badge">Industry: FoodTech</span>
+                        <span class="meta-badge" id="result-focus-badge">Focus: Sustainability</span>
+                    </div>
+
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="products-tab">Product Ideas</button>
+                        <button class="tab-btn" data-tab="features-tab">Feature Ideas</button>
+                        <button class="tab-btn" data-tab="research-tab">Research Suggestions</button>
+                    </div>
+
+                    <div class="tab-content active" id="products-tab">
+                        <!-- Dynamic product cards -->
+                    </div>
+                    <div class="tab-content" id="features-tab">
+                        <!-- Dynamic feature cards -->
+                    </div>
+                    <div class="tab-content" id="research-tab">
+                        <!-- Dynamic research cards -->
+                    </div>
+                </div>
+    </div>
+
+    <!-- Genesis Engine Modal -->
+    <div id="genesis-modal" class="modal-overlay hidden">
+        <div class="modal-content glass" style="max-width: 1000px; width: 95%;">
+            <div class="modal-header">
+                <div class="modal-title-area">
+                    <span class="modal-icon">🧬</span>
+                    <h2>Genesis Engine</h2>
+                </div>
+                <button id="close-genesis-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="subtitle">Orchestrate a team of 11 AI software engineering specialists to compile a complete blueprint.</p>
+                
+                <div class="genesis-layout">
+                    <!-- Form Area -->
+                    <div class="genesis-form">
+                        <div class="form-group">
+                            <label for="genesis-goal">Project Goal / Core Concept</label>
+                            <input type="text" id="genesis-goal" placeholder="e.g., Build a decentralized SaaS marketplace..." autocomplete="off">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="genesis-stack">Target Tech Stack</label>
+                                <input type="text" id="genesis-stack" placeholder="e.g., React, FastAPI, PostgreSQL" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="genesis-db">Database Type</label>
+                                <input type="text" id="genesis-db" placeholder="e.g., Relational, NoSQL, Graph" autocomplete="off">
+                            </div>
+                        </div>
+                        
+                        <!-- Specialist Selection Checklist -->
+                        <div class="specialist-selection">
+                            <label class="section-label">Select Specialist Modules</label>
+                            <div class="specialist-grid">
+                                <label class="checkbox-label"><input type="checkbox" value="requirements" checked> 📋 Requirements</label>
+                                <label class="checkbox-label"><input type="checkbox" value="research" checked> 🔍 Research</label>
+                                <label class="checkbox-label"><input type="checkbox" value="architecture" checked> 🏛️ Architecture</label>
+                                <label class="checkbox-label"><input type="checkbox" value="ui_ux" checked> 🎨 UI/UX Design</label>
+                                <label class="checkbox-label"><input type="checkbox" value="database" checked> 💾 Database Design</label>
+                                <label class="checkbox-label"><input type="checkbox" value="backend" checked> ⚙️ Backend Plan</label>
+                                <label class="checkbox-label"><input type="checkbox" value="frontend" checked> 💻 Frontend Plan</label>
+                                <label class="checkbox-label"><input type="checkbox" value="ai_integration" checked> 🤖 AI Strategy</label>
+                                <label class="checkbox-label"><input type="checkbox" value="testing" checked> 🧪 Testing Plan</label>
+                                <label class="checkbox-label"><input type="checkbox" value="documentation" checked> 📚 Documentation</label>
+                                <label class="checkbox-label"><input type="checkbox" value="deployment" checked> 🚀 Deployment</label>
+                            </div>
+                        </div>
+                        
+                        <button id="generate-genesis-btn" style="margin-top: 1rem;">Coordinate Team & Build Blueprint</button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="genesis-loading" class="loading-container hidden">
+                        <div class="spinner"></div>
+                        <p id="genesis-loading-status">Coordinating AI specialists...</p>
+                    </div>
+
+                    <!-- Results Area (Sidebar + Document Viewer) -->
+                    <div id="genesis-results" class="results-container blueprint-workspace hidden">
+                        <div class="blueprint-sidebar">
+                            <h3>Specialists</h3>
+                            <div class="blueprint-nav" id="blueprint-nav-list">
+                                <!-- Navigation tabs generated dynamically -->
+                            </div>
+                        </div>
+                        <div class="blueprint-viewer glass">
+                            <div class="viewer-header">
+                                <span class="active-doc-title" id="active-doc-title">Document</span>
+                                <button class="copy-btn" id="copy-blueprint-btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Copy Markdown</button>
+                            </div>
+                            <div class="viewer-body markdown-content" id="blueprint-doc-content">
+                                <!-- Rendered Markdown/HTML -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
+

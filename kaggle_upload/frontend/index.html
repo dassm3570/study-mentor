@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>AETHER Project - Weather App</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; padding: 24px; background:#f7fafc }
+    #status { margin-top: 12px; padding: 12px; background: #fff; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.08) }
+    button { padding: 8px 12px; border-radius:6px; cursor:pointer }
+  </style>
+</head>
+<body>
+  <h1>Weather App (Generated)</h1>
+  <p>This simple page demonstrates the generated frontend calling the generated backend.</p>
+
+  <div>
+    <button id="checkBtn">Check Backend</button>
+  </div>
+
+  <div id="status">Backend status will appear here.</div>
+
+  <script>
+    const backendUrl = 'http://127.0.0.1:8100/'; // generated backend
+    const statusEl = document.getElementById('status');
+    const btn = document.getElementById('checkBtn');
+
+    async function checkBackend() {
+      statusEl.textContent = 'Checking...';
+      try {
+        const res = await fetch(backendUrl, { method: 'GET', mode: 'cors' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        statusEl.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      } catch (err) {
+        statusEl.textContent = 'Failed to contact backend: ' + err;
+      }
+    }
+
+    btn.addEventListener('click', checkBackend);
+
+    // Auto-check on load
+    window.addEventListener('load', () => {
+      checkBackend();
+    });
+  </script>
+</body>
+</html>
