@@ -6,7 +6,6 @@ logger = logging.getLogger("aether.generators.file_writer")
 
 class FileWriter:
     def __init__(self, base_path="generated_projects"):
-
 self.base_path = Path(os.getenv("OUTPUT_DIR", "/tmp/generated_projects"))
 self.base_path.mkdir(parents=True, exist_ok=True)
     def write_files(self, project_name, files):
