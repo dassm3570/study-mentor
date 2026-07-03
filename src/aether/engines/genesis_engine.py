@@ -82,7 +82,11 @@ class GenesisEngine:
     def __init__(self, llm_provider: Optional[LLMProvider] = None, output_dir: Optional[Path | str] = None):
         logger.info("GenesisEngine initialized.")
         self.llm_provider = llm_provider or get_llm_provider()
+<<<<<<< HEAD
         self.output_dir = Path(os.getenv("OUTPUT_DIR", "/tmp/generated_projects"))
+=======
+        self.output_dir = Path(output_dir) if output_dir is not None else Path("/tmp/generated_projects")
+>>>>>>> d443d44 (Fix Vercel file writer)
         self.code_generator = CodeGenerator()
         self.project_builder = ProjectBuilder(base_path=self.output_dir)
         self.specialists: Dict[str, GenesisComponent] = {

@@ -10,7 +10,7 @@ class ProjectBuilder:
     Builds a software project from AI generated files.
     """
 
-    def __init__(self, base_path="generated_projects"):
+    def __init__(self, base_path=""):
         self.writer = FileWriter(base_path=base_path)
 
     @staticmethod
