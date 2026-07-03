@@ -1,7 +1,7 @@
 import logging
 import json
 import asyncio
-from pathlib import Path
+from pathlib import Path import os
 from typing import Dict, Any, List, Optional
 from aether.generators.code_generator import CodeGenerator
 from aether.generators.project_builder import ProjectBuilder
@@ -82,7 +82,7 @@ class GenesisEngine:
     def __init__(self, llm_provider: Optional[LLMProvider] = None, output_dir: Optional[Path | str] = None):
         logger.info("GenesisEngine initialized.")
         self.llm_provider = llm_provider or get_llm_provider()
-        self.output_dir = Path(output_dir) if output_dir is not None else Path("generated_projects")
+        self.output_dir = Path(os.getenv("OUTPUT_DIR", "/tmp/generated_projects"))
         self.code_generator = CodeGenerator()
         self.project_builder = ProjectBuilder(base_path=self.output_dir)
         self.specialists: Dict[str, GenesisComponent] = {
