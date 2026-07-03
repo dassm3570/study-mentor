@@ -1,0 +1,10 @@
+{
+  "buildCommand": "pip install -r requirements.txt",
+  "framework": "fastapi",
+  "runtime": "python@3.11",
+  "functions": {
+    "src/aether/main.py": {
+      "runtime": "python@3.11"
+    }
+  }
+}
