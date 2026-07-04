@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-
+from fastapi.responses import FileResponse
 app = FastAPI(
     title="AETHER 2.0 AI Operating System",
     description="The Core API and Orchestration engine for the AETHER 2.0 Agentic AI OS.",
@@ -27,6 +27,15 @@ except Exception as e:
 
 @app.get("/")
 async def root():
+    frontend_file = os.path.join(
+        os.path.dirname(__file__),
+        "frontend",
+        "index.html"
+    )
+
+    if os.path.exists(frontend_file):
+        return FileResponse(frontend_file)
+
     return {
         "status": "running",
         "system": "AETHER 2.0",
