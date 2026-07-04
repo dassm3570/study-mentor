@@ -1,20 +1,17 @@
 import logging
-from pathlib import Path os
+import os
+from pathlib import Path
 
 logger = logging.getLogger("aether.generators.file_writer")
 
 
 class FileWriter:
-<<<<<<< HEAD
-    def __init__(self, base_path="generated_projects"):
-self.base_path = Path(os.getenv("OUTPUT_DIR", "/tmp/generated_projects"))
-self.base_path.mkdir(parents=True, exist_ok=True)
-=======
-    def __init__(self, base_path=Path("/tmp/generated_projects")):
-        self.base_path = Path(base_path)
+    def __init__(self, base_path=None):
+        if base_path is not None:
+            self.base_path = Path(base_path)
+        else:
+            self.base_path = Path(os.getenv("OUTPUT_DIR", "/tmp/generated_projects"))
         self.base_path.mkdir(parents=True, exist_ok=True)
-
->>>>>>> d443d44 (Fix Vercel file writer)
     def write_files(self, project_name, files):
         project_dir = self.base_path / project_name
         project_dir.mkdir(parents=True, exist_ok=True)

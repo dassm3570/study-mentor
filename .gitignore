@@ -45,3 +45,7 @@ data_test/mock_git_repo/
 # Local config / environment
 .env
 config/settings.local.yaml
+
+# Generated outputs
+generated_projects/
+workspaces/

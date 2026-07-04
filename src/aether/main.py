@@ -28,7 +28,7 @@ except Exception as e:
 @app.get("/")
 async def root():
     frontend_file = os.path.join(
-        os.path.dirname(__file__),
+        os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
         "frontend",
         "index.html"
     )
@@ -55,6 +55,7 @@ async def health_check():
 try:
     frontend_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "frontend")
     if os.path.exists(frontend_path) and os.path.isdir(frontend_path):
-        app.mount("/static", StaticFiles(directory=frontend_path, html=True), name="frontend")
+        app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
 except Exception as e:
     print(f"[INFO] Frontend static files not mounted: {e}")
+
